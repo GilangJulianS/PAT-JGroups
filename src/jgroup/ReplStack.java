@@ -67,7 +67,11 @@ public class ReplStack<T> extends ReceiverAdapter{
     public T pop() throws Exception{
         T obj = null;
         synchronized(stack){
-            obj = stack.peek();
+            if(!stack.empty()){
+                obj = stack.peek();
+            }else{
+                return null;
+            }
         }
         MsgObject<T> mo = new MsgObject<>(MsgObject.POP);
         Message msg = new Message(null, null, serialize(mo));
@@ -78,7 +82,11 @@ public class ReplStack<T> extends ReceiverAdapter{
     public T top(){
         T obj = null;
         synchronized(stack){
-            obj = stack.peek();
+            if(!stack.empty()){
+                obj = stack.peek();
+            }else{
+                return null;
+            }
         }
         return obj;
     }

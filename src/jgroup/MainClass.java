@@ -86,9 +86,19 @@ public class MainClass {
                 input = s.nextLine();
                 stack.push(input);
             }else if(input.equals("2")){
-                System.out.println("Item popped: " + stack.pop());
+                String obj = stack.pop();
+                if(obj != null){
+                    System.out.println("Item popped: " + obj);
+                }else{
+                    System.out.println("Stack empty");
+                }
             }else if(input.equals("3")){
-                System.out.println("Top item: " + stack.top());
+                String obj = stack.top();
+                if(obj != null){
+                    System.out.println("Top item: " + obj);
+                }else{
+                    System.out.println("Stack empty");
+                }
             }
         }
         stack.close();

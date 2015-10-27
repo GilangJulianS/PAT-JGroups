@@ -85,8 +85,13 @@ public class ReplSet<T> extends ReceiverAdapter{
             try {
                 MsgObject<T> msg = (MsgObject<T>) deserialize(msgBuffer);
                 if(msg.getMessage().equals(MsgObject.ADD)){
-                    set.add(msg.getObject());
-                    System.out.println(msg.getObject().toString() + " added to set");
+                    if(!set.contains(msg.getObject())){
+                        set.add(msg.getObject());
+                        System.out.println(msg.getObject().toString() + " added to set");
+                    }else{
+                        System.out.println(msg.getObject().toString() + " already in set");
+                    }
+                    
                 }else if(msg.getMessage().equals(MsgObject.REMOVE)){
                     if(set.contains(msg.getObject())){
                         set.remove(msg.getObject());
